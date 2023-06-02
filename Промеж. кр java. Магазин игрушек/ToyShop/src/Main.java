@@ -21,7 +21,8 @@ public class Main {
         Toy[] box3 = new Toy[] {toy7, toy8, toy9};
 
         //сюда будем скидывать отсортированные игрушки
-        PriorityQueue <Toy> mainBox = new PriorityQueue<>();
+//        PriorityQueue <Toy> mainBox = new PriorityQueue<>();
+        List <Toy> mainBox = new ArrayList<>();
 
         //сортируем игрушки по весу относительно случайности выпадения
 
@@ -35,17 +36,23 @@ public class Main {
         }
 
     }
-    public static void sortToys(Toy [] box, PriorityQueue <Toy> mainBox) {
+    public static void sortToys(Toy [] box, List <Toy> mainBox) {//сортируем игрушки по частоте выпадения
+        // и записываем в список ... ОШИБКА!
         List<Toy> checkArr = new ArrayList<>();
-        for (int i = 0; i <3; i++) {
-            Toy item = getToy(box);
-            if (!(checkArr.contains(item))){
-                checkArr.add(item);
-                mainBox.add(item);
+        while (checkArr.size() <= 3){
+            for (int i = 0; i <3; i++) {
+                Toy item = getToy(box);
+                if (checkArr.contains(item)) {
+                    continue;
+                } else {
+                    checkArr.add(item);
+                    mainBox.add(item);
+                }
             }
         }
     }
-    public static Toy getToy(Toy[] box) {
+
+    public static Toy getToy(Toy[] box) { //получаем игрушки относительно %-ов вероятности
         int randNum = (int) (Math.random() * 10) + 1;
         if (randNum <= 6) {
             for (Toy toy: box) {

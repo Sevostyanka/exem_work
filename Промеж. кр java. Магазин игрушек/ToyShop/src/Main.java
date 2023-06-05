@@ -16,7 +16,7 @@ public class Main {
         Toy toy9 = new Toy(9, "Часы", 3);
 
         // создали три массива с игрушками
-        Toy[] box1 = new Toy[] {toy1, toy2, toy3};
+        Toy[] box1 = new Toy[] {toy1, toy2, toy3, toy4, toy5, toy6};
         Toy[] box2 = new Toy[] {toy4, toy5, toy6};
         Toy[] box3 = new Toy[] {toy7, toy8, toy9};
 
@@ -25,10 +25,10 @@ public class Main {
         List <Toy> mainBox = new ArrayList<>();
 
         //сортируем игрушки по весу относительно случайности выпадения
-
+        System.out.println(box1.length);
         sortToys(box1, mainBox);
-        sortToys(box2, mainBox);
-        sortToys(box2, mainBox);
+//        sortToys(box2, mainBox);
+//        sortToys(box3, mainBox);
 
         //распечатаем, что в очереди, чтоб посмотреть... и ОШИБКА! Почему?
         for (Toy item: mainBox) {
@@ -39,17 +39,17 @@ public class Main {
     public static void sortToys(Toy [] box, List <Toy> mainBox) {//сортируем игрушки по частоте выпадения
         // и записываем в список ... ОШИБКА!
         List<Toy> checkArr = new ArrayList<>();
-        while (checkArr.size() <= 3){
-            for (int i = 0; i <3; i++) {
+        while (checkArr.size() <= box.length){
+            for (int i = 0; i < box.length; i++) {
                 Toy item = getToy(box);
-                if (checkArr.contains(item)) {
-                    continue;
-                } else {
+                if (!(checkArr.contains(item))) {
                     checkArr.add(item);
                     mainBox.add(item);
+                    System.out.println(item);
                 }
             }
         }
+        checkArr.clear();
     }
 
     public static Toy getToy(Toy[] box) { //получаем игрушки относительно %-ов вероятности
@@ -63,14 +63,14 @@ public class Main {
         }
         if (randNum > 6 && randNum <= 8) {
             for (Toy toy: box) {
-                if (toy.getWeight() == 3) {
+                if (toy.getWeight() == 2) {
                     return toy;
                 }
             }
         }
         if (randNum > 8 && randNum <= 10) {
             for (Toy toy: box) {
-                if (toy.getWeight() == 3) {
+                if (toy.getWeight() == 1) {
                     return toy;
                 }
             }

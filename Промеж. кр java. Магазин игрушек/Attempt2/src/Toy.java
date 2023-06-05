@@ -3,15 +3,15 @@ public class Toy {
     private Integer id;
     private Integer frequency;
 
-    public Toy(Integer id, Integer frequency, String name){
+    public Toy(Integer id, String name, Integer frequency){
         this.id = id;
-        this.frequency = frequency;
         this.name = name;
+        this.frequency = frequency;
     }
 
     @Override
     public String toString() {
-        return id + " " + frequency + " " + name+ ";";
+        return id + " " + name + " " + frequency +  ";";
     }
 
     public String getName() {
